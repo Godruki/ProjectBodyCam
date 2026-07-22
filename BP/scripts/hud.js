@@ -34,7 +34,7 @@ system.runInterval(() => {
         const loc = player.location;
 
         player.onScreenDisplay.setActionBar(
-            `§c● REC §f| 🔋${cam.battery.toFixed(0)}% | 🕒 ${time}\n` +
+            `§c● REC §f🔋${cam.battery.toFixed(0)}% §7| 🕒 ${time}\n` +
             `📍 ${Math.floor(loc.x)} ${Math.floor(loc.y)} ${Math.floor(loc.z)}\n` +
             `🌍 ${getDimensionName(player)}`
         );
