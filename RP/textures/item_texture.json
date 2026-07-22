@@ -1,9 +1,9 @@
 {
-    "resource_pack_name": "ProjectBodyCam",
-    "texture_name": "atlas.items",
-    "texture_data": {
-        "bodycam": {
-            "textures": "textures/items/bodycam"
-        }
+  "resource_pack_name": "ProjectBodyCam",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "projectbodycam_tablet": {
+      "textures": "textures/items/projectbodycam_tablet"
     }
+  }
 }
