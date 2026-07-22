@@ -1,43 +1,80 @@
 import { world, system } from "@minecraft/server";
-import { getCamera } from "./bodycam.js";
+import { getPlayerData } from "./playerData.js";
+import { formatClock, formatDate, formatRecordingTime } from "./utils.js";
 
 function getDimensionName(player) {
+
     switch (player.dimension.id) {
+
         case "minecraft:overworld":
-            return "OVERWORLD";
+            return "Overworld";
+
         case "minecraft:nether":
-            return "NETHER";
+            return "Nether";
+
         case "minecraft:the_end":
-            return "THE END";
+            return "The End";
+
         default:
-            return "UNKNOWN";
+            return player.dimension.id;
     }
+
+}
+
+/*
+ * Temporal.
+ * En la siguiente versión este método leerá el bioma real
+ * (incluyendo biomas de addons si la API lo permite).
+ */
+function getBiomeName(player) {
+
+    return "Detectando...";
+
+}
+
+function batteryBar(percent) {
+
+    const bars = 10;
+
+    const filled = Math.round(percent / 10);
+
+    return "█".repeat(filled) + "░".repeat(bars - filled);
+
 }
 
 system.runInterval(() => {
 
-    const now = new Date();
-
-    const time =
-        now.getHours().toString().padStart(2, "0") +
-        ":" +
-        now.getMinutes().toString().padStart(2, "0") +
-        ":" +
-        now.getSeconds().toString().padStart(2, "0");
-
     for (const player of world.getPlayers()) {
 
-        const cam = getCamera(player);
+        const data = getPlayerData(player);
 
-        if (!cam) continue;
+        if (!data.enabled)
+            continue;
 
-        const loc = player.location;
+        const pos = player.location;
 
-        player.onScreenDisplay.setActionBar(
-            `§c● REC §f🔋${cam.battery.toFixed(0)}% §7| 🕒 ${time}\n` +
-            `📍 ${Math.floor(loc.x)} ${Math.floor(loc.y)} ${Math.floor(loc.z)}\n` +
-            `🌍 ${getDimensionName(player)}`
-        );
+        const hud = [
+
+            "§c● REC",
+            "",
+            "§fPROJECT BODYCAM",
+            "",
+            `§a${player.name}`,
+            "",
+            `${formatDate()} ${formatClock()}`,
+            "",
+            `🌲 ${getBiomeName(player)}`,
+            `🌍 ${getDimensionName(player)}`,
+            "",
+            `📍 ${Math.floor(pos.x)} / ${Math.floor(pos.y)} / ${Math.floor(pos.z)}`,
+            "",
+            `🔋 ${batteryBar(data.battery)} ${Math.floor(data.battery)}%`,
+            "",
+            `⏺ ${formatRecordingTime(data.recordingTime)}`
+
+        ].join("\n");
+
+        player.onScreenDisplay.setActionBar(hud);
 
     }
 
