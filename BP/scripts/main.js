@@ -4,6 +4,7 @@ import "./hud.js";
 import "./inventoryManager.js";
 import "./timer.js";
 import "./core/playerManager.js";
+import "./core/inventoryManager.js";
 
 world.afterEvents.itemUse.subscribe((event) => {
 
