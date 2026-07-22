@@ -2,6 +2,7 @@ import { world } from "@minecraft/server";
 import { toggleBodyCam } from "./bodycam.js";
 import "./hud.js";
 import "./inventoryManager.js";
+import "./timer.js";
 
 world.afterEvents.itemUse.subscribe((event) => {
 
