@@ -1,5 +1,6 @@
-import { world, system } from "@minecraft/server";
-import { toggleBodyCam, getCamera } from "./bodycam.js";
+import { world } from "@minecraft/server";
+import { toggleBodyCam } from "./bodycam.js";
+import "./hud.js";
 
 world.afterEvents.itemUse.subscribe((event) => {
 
@@ -18,19 +19,3 @@ world.afterEvents.itemUse.subscribe((event) => {
     }
 
 });
-
-system.runInterval(() => {
-
-    for (const player of world.getPlayers()) {
-
-        const cam = getCamera(player);
-
-        if (!cam) continue;
-
-        player.onScreenDisplay.setActionBar(
-            `§c● REC   §f🔋${cam.battery.toFixed(0)}%`
-        );
-
-    }
-
-}, 20);
