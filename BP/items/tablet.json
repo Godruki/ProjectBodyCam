@@ -1,0 +1,19 @@
+{
+  "format_version": "1.21.110",
+  "minecraft:item": {
+    "description": {
+      "identifier": "projectbodycam:tablet",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": "projectbodycam_tablet",
+      "minecraft:display_name": {
+        "value": "§bProjectBodyCam Tablet"
+      },
+      "minecraft:max_stack_size": 1,
+      "minecraft:foil": false
+    }
+  }
+}
