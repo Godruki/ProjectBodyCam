@@ -7,11 +7,8 @@ export function getPlayerData(player) {
         players.set(player.id, {
 
             enabled: false,
-
             battery: 100,
-
             recordingTime: 0,
-
             firstJoin: true
 
         });
@@ -22,26 +19,16 @@ export function getPlayerData(player) {
 
 }
 
-export function resetRecording(player){
+export function toggleRecording(player){
 
     const data = getPlayerData(player);
 
-    data.recordingTime = 0;
+    data.enabled = !data.enabled;
 
-}
+    if(data.enabled){
 
-export function startRecording(player){
+        data.recordingTime = 0;
 
-    const data = getPlayerData(player);
-
-    data.enabled = true;
-
-}
-
-export function stopRecording(player){
-
-    const data = getPlayerData(player);
-
-    data.enabled = false;
+    }
 
 }
