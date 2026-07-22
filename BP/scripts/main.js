@@ -12,7 +12,7 @@ world.afterEvents.itemUse.subscribe((event) => {
 
     if (!item) return;
 
-    if (item.typeId === "minecraft:spyglass") {
+    if (item.typeId === "projectbodycam:bodycam") {
 
         toggleBodyCam(player);
 
