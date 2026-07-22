@@ -3,6 +3,7 @@ import { toggleBodyCam } from "./bodycam.js";
 import "./hud.js";
 import "./inventoryManager.js";
 import "./timer.js";
+import "./core/playerManager.js";
 
 world.afterEvents.itemUse.subscribe((event) => {
 
